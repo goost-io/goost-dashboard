@@ -156,7 +156,9 @@ export default function Sidebar() {
             <ListItemButton>
               <HomeRoundedIcon />
               <ListItemContent>
-                <Typography level='title-sm'>Home</Typography>
+                <Link href='/panel/dashboard'>
+                  <Typography level='title-sm'>Home</Typography>
+                </Link>
               </ListItemContent>
             </ListItemButton>
           </ListItem>
@@ -199,7 +201,9 @@ export default function Sidebar() {
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <ListItemButton>İç içe içerik</ListItemButton>
+                  <Link href='/panel/inner-content' passHref>
+                    <ListItemButton>İç içe içerik</ListItemButton>
+                  </Link>
                 </ListItem>
                 <ListItem>
                   <ListItemButton>Bağlantılı içerik</ListItemButton>
