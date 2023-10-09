@@ -1,52 +1,139 @@
 import React from "react";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
-import Avatar from "@mui/joy/Avatar";
-import Divider from "@mui/joy/Divider";
-import Chip from "@mui/joy/Chip";
+import Box from "@mui/joy/Box";
+import Breadcrumbs from "@mui/joy/Breadcrumbs";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import Link from "@mui/joy/Link";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
+import AddToQueueRoundedIcon from "@mui/icons-material/AddToQueueRounded";
+import Sheet from "@mui/joy/Sheet";
+import Table from "@mui/joy/Table";
+import {Grid} from "@mui/joy";
+import IconButton from "@mui/joy/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function ContentSingle() {
   return (
     <div style={{ padding: "16px" }}>
-      <Typography variant='h4' gutterBottom>
-        Content Single Page
-      </Typography>
-      <Avatar
-        alt='User Avatar'
-        src='https://via.placeholder.com/150'
-        sx={{ width: 150, height: 150, marginBottom: 2 }}
-      />
-      <Typography variant='body1' paragraph>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-        consectetur lectus nec ligula scelerisque, nec rhoncus arcu ullamcorper.
-        Integer vel massa eu risus consectetur tincidunt. Ut pellentesque neque
-        in facilisis iaculis.
-      </Typography>
-      <Button
-        variant='contained'
-        color='primary'
-        style={{ marginRight: "16px" }}>
-        Primary Button
-      </Button>
-      <Button variant='outlined' color='primary'>
-        Outlined Button
-      </Button>
-      <Divider style={{ margin: "16px 0" }} />
-      <Chip
-        label='Tag 1'
-        color='primary'
-        style={{ marginRight: "8px", marginBottom: "8px" }}
-      />
-      <Chip
-        label='Tag 2'
-        color='secondary'
-        style={{ marginRight: "8px", marginBottom: "8px" }}
-      />
-      <Chip
-        label='Tag 3'
-        color='primary'
-        style={{ marginRight: "8px", marginBottom: "8px" }}
-      />
+        <Box
+            component="main"
+            className="MainContent"
+            sx={{
+                px: {
+                    xs: 2,
+                    md: 6,
+                },
+                pt: {
+                    xs: 'calc(12px + var(--Header-height))',
+                    sm: 'calc(12px + var(--Header-height))',
+                    md: 3,
+                },
+                pb: {
+                    xs: 2,
+                    sm: 2,
+                    md: 3,
+                },
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                minWidth: 0,
+                height: '100dvh',
+                gap: 1,
+            }}
+        >
+            <Box
+                sx={{
+                    display: 'flex',
+                    my: 1,
+                    gap: 1,
+                    flexDirection: { xs: 'column', sm: 'row' },
+                    alignItems: { xs: 'start', sm: 'center' },
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between',
+                }}
+            >
+                <Typography level="h2">Tekli İçerik Yönetimi
+                </Typography>
+                <Button
+                    color="primary"
+                    startDecorator={<AddToQueueRoundedIcon />}
+                    size="sm"
+                >
+                    Yeni İçerik Ekleme
+                </Button>
+                <Sheet sx={{
+                    display: { xs: 'none', sm: 'initial' },
+                    width: '100%',
+                    borderRadius: 'sm',
+                    flexShrink: 1,
+                    overflow: 'auto',
+                    minHeight: 0,
+                }}>
+                    <Table
+                        borderAxis="yBetween"
+                        color="neutral"
+                        size="md"
+                        stickyFooter={false}
+                        stickyHeader
+                        variant="outlined"
+                    ><thead>
+                    <tr>
+                        <th>Başlık</th>
+                        <th style={{ width: '40%' }}>Detay</th>
+                        <th>Kod</th>
+                        <th>Dil&nbsp;(g)</th>
+                        <th>
+                        </th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                        <tr>
+                            <td>About</td>
+                            <td>Lorem ipsum lorem ipsum</td>
+                            <td>about</td>
+                            <td>EN</td>
+                            <td>
+                                <Grid container spacing={2}>
+                                    <Grid>
+                                        <IconButton variant="soft" color={"warning"}>
+                                            <EditIcon />
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid>
+                                        <IconButton variant="soft" color={"danger"}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Grid>
+                                </Grid>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hakkımızda</td>
+                            <td>Bu şirketimizin hakkımızda detayıdır</td>
+                            <td>about</td>
+                            <td>TR</td>
+                            <td>
+                                <Grid container spacing={2}>
+                                    <Grid>
+                                        <IconButton variant="soft" color={"warning"}>
+                                            <EditIcon />
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid>
+                                        <IconButton variant="soft" color={"danger"}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Grid>
+                                </Grid>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                </Sheet>
+            </Box>
+        </Box>
     </div>
   );
 }
