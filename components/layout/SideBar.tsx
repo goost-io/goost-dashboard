@@ -118,7 +118,7 @@ export default function Sidebar() {
         <IconButton variant='soft' color='primary' size='sm'>
           <BrightnessAutoRoundedIcon />
         </IconButton>
-        <Link href='/panel/dashboard'>
+        <Link href='/dashboard'>
           <Typography level='title-lg'>Goost.io</Typography>
         </Link>
         <ColorSchemeToggle sx={{ ml: "auto" }} />
@@ -150,7 +150,7 @@ export default function Sidebar() {
             <ListItemButton>
               <HomeRoundedIcon />
               <ListItemContent>
-                <Link href='/panel/dashboard'>
+                <Link href='/dashboard'>
                   <Typography level='title-sm'>Home</Typography>
                 </Link>
               </ListItemContent>

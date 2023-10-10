@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -30,9 +26,10 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/pages/panel/dashboard.tsx", "components/addLanguage/addLangBtnModal.js", "src/pages/panel/content-single.tsx"  ],
-  "exclude": [
-    "node_modules"
+    "**/*.tsx",
+    "src/pages/dashboard.tsx",
+    "components/addLanguage/addLangBtnModal.js",
+    "src/pages/dashboard/content-single.tsx"
   ],
+  "exclude": ["node_modules"]
 }
