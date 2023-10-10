@@ -190,12 +190,12 @@ export default function Sidebar() {
               )}>
               <List sx={{ gap: 0.5 }}>
                 <ListItem sx={{ mt: 0.5 }}>
-                  <Link href='/panel/content-single' passHref>
+                  <Link href='/dashboard/content-single' passHref>
                     <ListItemButton>Tekli İçerik</ListItemButton>
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link href='/panel/inner-content' passHref>
+                  <Link href='/dashboard/inner-content' passHref>
                     <ListItemButton>İç içe içerik</ListItemButton>
                   </Link>
                 </ListItem>
@@ -224,7 +224,7 @@ export default function Sidebar() {
               )}>
               <List sx={{ gap: 0.5 }}>
                 <ListItem sx={{ mt: 0.5 }}>
-                  <Link href='/panel/add-language' passHref>
+                  <Link href='/dashboard/add-language' passHref>
                     <ListItemButton>Dil Ekleme Yönetimi </ListItemButton>
                   </Link>
                 </ListItem>
