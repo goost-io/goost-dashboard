@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/pages/panel/dashboard.tsx"  ],
+, "src/pages/panel/dashboard.tsx", "components/addLanguage/addLangBtnModal.js", "src/pages/panel/content-single.tsx"  ],
   "exclude": [
     "node_modules"
   ]
