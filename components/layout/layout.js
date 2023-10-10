@@ -3,14 +3,28 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
+import { useTheme } from "@mui/joy/styles";
 
 export default function Layout({ children }) {
+  const theme = useTheme();
+
   return (
     <>
-      <Header />
       <CssBaseline />
-      <Box sx={{ display: "flex", minHeight: "100vh" }}>
-        <Box sx={{ width: "var(--Sidebar-width)", flexShrink: 0 }}>
+      <Box
+        sx={{
+          display: "flex",
+          minHeight: "100vh",
+          [theme.breakpoints.down("sm")]: {
+            flexDirection: "column",
+          },
+        }}>
+        <Header />
+        <Box
+          sx={{
+            width: "var(--Sidebar-width)",
+            flexShrink: 0,
+          }}>
           <Sidebar />
         </Box>
         <Box
@@ -28,7 +42,7 @@ export default function Layout({ children }) {
             display: "flex",
             flexDirection: "column",
             minWidth: 0,
-            height: "100vh",
+            height: "100%",
             gap: 1,
           }}>
           {children}
