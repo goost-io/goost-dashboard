@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {contentList, singleContentList} from "@/redux/single-content/content.list";
+import {singleContentList} from "@/redux/single-content/content.list";
 
 const initialState = {
     content: [],

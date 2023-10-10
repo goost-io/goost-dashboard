@@ -21,7 +21,10 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
@@ -31,5 +34,5 @@
 , "src/pages/panel/dashboard.tsx", "components/addLanguage/addLangBtnModal.js", "src/pages/panel/content-single.tsx"  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
 }

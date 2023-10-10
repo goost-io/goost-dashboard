@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {offerRequestList} from "@/redux/offer-request/offer-request.list";
 
 const initialState = {
     offerRequests: [],
