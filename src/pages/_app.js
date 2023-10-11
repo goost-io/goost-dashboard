@@ -20,8 +20,7 @@ export default function App({ Component, pageProps }) {
     <div>
       <Provider store={store}>
         <CssVarsProvider disableTransitionOnChange>
-            {useLayout && <Layout><Component {...pageProps}/></Layout>}
-            {!useLayout && <Component {...pageProps}/>}
+            {useLayout ? <Layout><Component {...pageProps}/></Layout> : <Component {...pageProps}/>}
         </CssVarsProvider>
       </Provider>
     </div>
