@@ -263,13 +263,13 @@ export default function TableSortAndSelection() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const dispatch = useDispatch();
-  const [data, setData] = React.useState([]);
+  const [initiialData, setInitiialData] = React.useState([]);
 
   React.useEffect(() => {
     dispatch(singleContentList()).then((data) => {
-      console.log("slice worked");
+      console.log("slice worked", data);
     });
-  }, [i]);
+  }, [initiialData]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";

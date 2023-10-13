@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { configureStoreWith } from "@/redux/store";
 import { useRouter } from "next/router";
 import JoySignInSideTemplate from "@/pages/login";
-import { tokenValidation } from "../../tokenValidation";
+import "material-react-toastify/dist/ReactToastify.css";
 
 const store = configureStoreWith();
 
