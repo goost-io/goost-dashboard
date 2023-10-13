@@ -18,9 +18,9 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { visuallyHidden } from "@mui/utils";
-import AddLanguageModal from "../../../components/add-language/AddLangBtnModal";
 import AddContentSingleModal from "../../../components/content-single/AddContentSingleModal";
-
+import { useDispatch } from "react-redux";
+import { singleContentList } from "../../redux/single-content/content.list"; // actions dosyasının yolunu doğru şekilde ayarlayın
 function createData(name, calories, fat, carbs, protein) {
   return {
     name,
@@ -67,10 +67,6 @@ function getComparator(order, orderBy) {
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
@@ -155,7 +151,6 @@ function EnhancedTableHead(props) {
                   ? { asc: "ascending", desc: "descending" }[order]
                   : undefined
               }>
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <Link
                 underline='none'
                 color='neutral'
@@ -267,6 +262,14 @@ export default function TableSortAndSelection() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const dispatch = useDispatch();
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    dispatch(singleContentList()).then((data) => {
+      console.log("slice worked");
+    });
+  }, [i]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
@@ -334,150 +337,151 @@ export default function TableSortAndSelection() {
   };
 
   return (
-      <><div style={containerStyle}>
+    <>
+      <div style={containerStyle}>
         <h1>İçerik</h1>
         <AddContentSingleModal />
       </div>
-    <Sheet
-      variant='outlined'
-      sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}>
-      <EnhancedTableToolbar numSelected={selected.length} />
-      <Table
-        aria-labelledby='tableTitle'
-        hoverRow
-        sx={{
-          "--TableCell-headBackground": "transparent",
-          "--TableCell-selectedBackground": (theme) =>
-            theme.vars.palette.success.softBg,
-          "& thead th:nth-child(1)": {
-            width: "40px",
-          },
-          "& thead th:nth-child(2)": {
-            width: "30%",
-          },
-          "& tr > *:nth-child(n+3)": { textAlign: "right" },
-        }}>
-        <EnhancedTableHead
-          numSelected={selected.length}
-          order={order}
-          orderBy={orderBy}
-          onSelectAllClick={handleSelectAllClick}
-          onRequestSort={handleRequestSort}
-          rowCount={rows.length}
-        />
-        <tbody>
-          {stableSort(rows, getComparator(order, orderBy))
-            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((row, index) => {
-              const isItemSelected = isSelected(row.name);
-              const labelId = `enhanced-table-checkbox-${index}`;
+      <Sheet
+        variant='outlined'
+        sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}>
+        <EnhancedTableToolbar numSelected={selected.length} />
+        <Table
+          aria-labelledby='tableTitle'
+          hoverRow
+          sx={{
+            "--TableCell-headBackground": "transparent",
+            "--TableCell-selectedBackground": (theme) =>
+              theme.vars.palette.success.softBg,
+            "& thead th:nth-child(1)": {
+              width: "40px",
+            },
+            "& thead th:nth-child(2)": {
+              width: "30%",
+            },
+            "& tr > *:nth-child(n+3)": { textAlign: "right" },
+          }}>
+          <EnhancedTableHead
+            numSelected={selected.length}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={rows.length}
+          />
+          <tbody>
+            {stableSort(rows, getComparator(order, orderBy))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row, index) => {
+                const isItemSelected = isSelected(row.name);
+                const labelId = `enhanced-table-checkbox-${index}`;
 
-              return (
-                <tr
-                  onClick={(event) => handleClick(event, row.name)}
-                  role='checkbox'
-                  aria-checked={isItemSelected}
-                  tabIndex={-1}
-                  key={row.name}
-                  // selected={isItemSelected}
-                  style={
-                    isItemSelected
-                      ? {
-                          "--TableCell-dataBackground":
-                            "var(--TableCell-selectedBackground)",
-                          "--TableCell-headBackground":
-                            "var(--TableCell-selectedBackground)",
-                        }
-                      : {}
-                  }>
-                  <th scope='row'>
-                    <Checkbox
-                      checked={isItemSelected}
-                      slotProps={{
-                        input: {
-                          "aria-labelledby": labelId,
-                        },
-                      }}
-                      sx={{ verticalAlign: "top" }}
-                    />
-                  </th>
-                  <th id={labelId} scope='row'>
-                    {row.name}
-                  </th>
-                  <td>{row.calories}</td>
-                  <td>{row.fat}</td>
-                  <td>{row.carbs}</td>
-                  <td>{row.protein}</td>
-                </tr>
-              );
-            })}
-          {emptyRows > 0 && (
-            <tr
-              style={{
-                height: `calc(${emptyRows} * 40px)`,
-                "--TableRow-hoverBackground": "transparent",
-              }}>
-              <td colSpan={6} aria-hidden />
-            </tr>
-          )}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan={6}>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 2,
-                  justifyContent: "flex-end",
+                return (
+                  <tr
+                    onClick={(event) => handleClick(event, row.name)}
+                    role='checkbox'
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={row.name}
+                    // selected={isItemSelected}
+                    style={
+                      isItemSelected
+                        ? {
+                            "--TableCell-dataBackground":
+                              "var(--TableCell-selectedBackground)",
+                            "--TableCell-headBackground":
+                              "var(--TableCell-selectedBackground)",
+                          }
+                        : {}
+                    }>
+                    <th scope='row'>
+                      <Checkbox
+                        checked={isItemSelected}
+                        slotProps={{
+                          input: {
+                            "aria-labelledby": labelId,
+                          },
+                        }}
+                        sx={{ verticalAlign: "top" }}
+                      />
+                    </th>
+                    <th id={labelId} scope='row'>
+                      {row.name}
+                    </th>
+                    <td>{row.calories}</td>
+                    <td>{row.fat}</td>
+                    <td>{row.carbs}</td>
+                    <td>{row.protein}</td>
+                  </tr>
+                );
+              })}
+            {emptyRows > 0 && (
+              <tr
+                style={{
+                  height: `calc(${emptyRows} * 40px)`,
+                  "--TableRow-hoverBackground": "transparent",
                 }}>
-                <FormControl orientation='horizontal' size='sm'>
-                  <FormLabel>Rows per page:</FormLabel>
-                  <Select
-                    onChange={handleChangeRowsPerPage}
-                    value={rowsPerPage}>
-                    <Option value={5}>5</Option>
-                    <Option value={10}>10</Option>
-                    <Option value={25}>25</Option>
-                  </Select>
-                </FormControl>
-                <Typography textAlign='center' sx={{ minWidth: 80 }}>
-                  {labelDisplayedRows({
-                    from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
-                    to: getLabelDisplayedRowsTo(),
-                    count: rows.length === -1 ? -1 : rows.length,
-                  })}
-                </Typography>
-                <Box sx={{ display: "flex", gap: 1 }}>
-                  <IconButton
-                    size='sm'
-                    color='neutral'
-                    variant='outlined'
-                    disabled={page === 0}
-                    onClick={() => handleChangePage(page - 1)}
-                    sx={{ bgcolor: "background.surface" }}>
-                    <KeyboardArrowLeftIcon />
-                  </IconButton>
-                  <IconButton
-                    size='sm'
-                    color='neutral'
-                    variant='outlined'
-                    disabled={
-                      rows.length !== -1
-                        ? page >= Math.ceil(rows.length / rowsPerPage) - 1
-                        : false
-                    }
-                    onClick={() => handleChangePage(page + 1)}
-                    sx={{ bgcolor: "background.surface" }}>
-                    <KeyboardArrowRightIcon />
-                  </IconButton>
+                <td colSpan={6} aria-hidden />
+              </tr>
+            )}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={6}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    justifyContent: "flex-end",
+                  }}>
+                  <FormControl orientation='horizontal' size='sm'>
+                    <FormLabel>Rows per page:</FormLabel>
+                    <Select
+                      onChange={handleChangeRowsPerPage}
+                      value={rowsPerPage}>
+                      <Option value={5}>5</Option>
+                      <Option value={10}>10</Option>
+                      <Option value={25}>25</Option>
+                    </Select>
+                  </FormControl>
+                  <Typography textAlign='center' sx={{ minWidth: 80 }}>
+                    {labelDisplayedRows({
+                      from: rows.length === 0 ? 0 : page * rowsPerPage + 1,
+                      to: getLabelDisplayedRowsTo(),
+                      count: rows.length === -1 ? -1 : rows.length,
+                    })}
+                  </Typography>
+                  <Box sx={{ display: "flex", gap: 1 }}>
+                    <IconButton
+                      size='sm'
+                      color='neutral'
+                      variant='outlined'
+                      disabled={page === 0}
+                      onClick={() => handleChangePage(page - 1)}
+                      sx={{ bgcolor: "background.surface" }}>
+                      <KeyboardArrowLeftIcon />
+                    </IconButton>
+                    <IconButton
+                      size='sm'
+                      color='neutral'
+                      variant='outlined'
+                      disabled={
+                        rows.length !== -1
+                          ? page >= Math.ceil(rows.length / rowsPerPage) - 1
+                          : false
+                      }
+                      onClick={() => handleChangePage(page + 1)}
+                      sx={{ bgcolor: "background.surface" }}>
+                      <KeyboardArrowRightIcon />
+                    </IconButton>
+                  </Box>
                 </Box>
-              </Box>
-            </td>
-          </tr>
-        </tfoot>
-      </Table>
-    </Sheet>
+              </td>
+            </tr>
+          </tfoot>
+        </Table>
+      </Sheet>
     </>
   );
 }
