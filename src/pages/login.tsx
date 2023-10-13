@@ -19,7 +19,8 @@ import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {loginUser} from "@/redux/auth/loginUser";
 import {configureStoreWith} from "@/redux/store";
-import {Alert, Snackbar} from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+import 'material-react-toastify/dist/ReactToastify.css';
 import {useRouter} from "next/router";
 
 interface FormElements extends HTMLFormControlsCollection {
@@ -82,6 +83,7 @@ export default function JoySignInSideTemplate() {
                 router.push("/dashboard");
             })
             .catch(() => {
+                toast('Giriş Yapıldı');
                 setSnackbarOpen(true);
             });
 
@@ -213,6 +215,7 @@ export default function JoySignInSideTemplate() {
                                     </Button>
                                 </Stack>
                             </form>
+                            <ToastContainer />
                         </Stack>
                     </Box>
                     <Box component="footer" sx={{ py: 3 }}>
