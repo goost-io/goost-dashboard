@@ -1,9 +1,6 @@
 import * as React from "react";
 import Table from "@mui/joy/Table";
-import { Col, Row } from "react-bootstrap";
-import { Button } from "@mui/joy";
-import { Add } from "@mui/icons-material";
-import AddLanguageButton from "../../../components/addLanguage/addLangBtnModal";
+import AddLanguageModal from "../../../components/add-language/AddLangBtnModal";
 
 function AddLanguage(name, code, status) {
   return { name, code, status };
@@ -32,7 +29,7 @@ export default function TableColumnWidth() {
     <>
       <div style={containerStyle}>
         <h1>Dil Ekleme Yöntemi</h1>
-        <AddLanguageButton />
+        <AddLanguageModal />
       </div>
 
       <Table sx={{ "& thead th:nth-child(1)": { width: "40%" } }}>

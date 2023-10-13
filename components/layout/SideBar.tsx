@@ -13,7 +13,7 @@ import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import ShoppingCartRoundedIcon from "@mui/icons-material/ShoppingCartRounded";
 import AssignmentRoundedIcon from "@mui/icons-material/AssignmentRounded";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -158,15 +158,6 @@ export default function Sidebar() {
           </ListItem>
 
           <ListItem>
-            <ListItemButton>
-              <DashboardRoundedIcon />
-              <ListItemContent>
-                <Typography level='title-sm'>Dashboard</Typography>
-              </ListItemContent>
-            </ListItemButton>
-          </ListItem>
-
-          <ListItem>
             <ListItemButton selected>
               <ShoppingCartRoundedIcon />
               <ListItemContent>
@@ -228,9 +219,22 @@ export default function Sidebar() {
                     <ListItemButton>Dil Ekleme Yönetimi </ListItemButton>
                   </Link>
                 </ListItem>
+                  <ListItem sx={{ mt: 0.5 }}>
+                      <Link href='/dashboard/add-language' passHref>
+                          <ListItemButton>İçerik Tipi Yönetimi</ListItemButton>
+                      </Link>
+                  </ListItem>
               </List>
             </Toggler>
           </ListItem>
+            <ListItem>
+                <ListItemButton selected>
+                    <LocalOfferIcon />
+                    <ListItemContent>
+                        <Typography level='title-sm'>Teklifler</Typography>
+                    </ListItemContent>
+                </ListItemButton>
+            </ListItem>
         </List>
 
         <List

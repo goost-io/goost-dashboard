@@ -18,6 +18,8 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { visuallyHidden } from "@mui/utils";
+import AddLanguageModal from "../../../components/add-language/AddLangBtnModal";
+import AddContentSingleModal from "../../../components/content-single/AddContentSingleModal";
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -234,7 +236,7 @@ function EnhancedTableToolbar(props) {
           sx={{ flex: "1 1 100%" }}
           id='tableTitle'
           component='div'>
-          Nutrition
+          İçerikler
         </Typography>
       )}
 
@@ -325,7 +327,17 @@ export default function TableSortAndSelection() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+  const containerStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  };
+
   return (
+      <><div style={containerStyle}>
+        <h1>İçerik</h1>
+        <AddContentSingleModal />
+      </div>
     <Sheet
       variant='outlined'
       sx={{ width: "100%", boxShadow: "sm", borderRadius: "sm" }}>
@@ -466,5 +478,6 @@ export default function TableSortAndSelection() {
         </tfoot>
       </Table>
     </Sheet>
+    </>
   );
 }

@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {singleContentList} from "@/redux/single-content/content.list";
 
 const initialState = {
-    content: [],
+    title: "",
+    type: "",
+    content: "",
     loading: false,
     error: null,
     success: null,

@@ -2,27 +2,38 @@ import React from "react";
 import { CssVarsProvider } from "@mui/joy/styles";
 import Layout from "../../components/layout/layout";
 import { Provider } from "react-redux";
-import {configureStoreWith} from "@/redux/store";
-import {useRouter} from "next/router";
+import { configureStoreWith } from "@/redux/store";
+import { useRouter } from "next/router";
+import JoySignInSideTemplate from "@/pages/login";
+import {tokenValidation} from "../../tokenValidation";
 
 const store = configureStoreWith();
-export default function App({ Component, pageProps }) {
 
+export default function App({ Component, pageProps }) {
     const router = useRouter();
 
-    // Define an array of routes where you don't want to use the Layout component
-    const routesWithoutLayout = ['/login']; // Add the routes where Layout is not needed
+    // Define an array of routes that require authentication
+    const unProtectedRoutes = ["/login"]; // Add the routes that require authentication
 
-    // Check if the current route is in the array of routes without Layout
-    const useLayout = !routesWithoutLayout.includes(router.pathname);
+    // Check if the current route is in the array of protected routes
+    const isProtectedRoute = !unProtectedRoutes.includes(router.pathname);
+
+    // Check if the user is authenticated based on your criteria (e.g., access token JWT)
+    const isAuthenticated = tokenValidation()/* Implement your authentication check here */;
 
     return (
-    <div>
-      <Provider store={store}>
-        <CssVarsProvider disableTransitionOnChange>
-            {useLayout ? <Layout><Component {...pageProps}/></Layout> : <Component {...pageProps}/>}
-        </CssVarsProvider>
-      </Provider>
-    </div>
-  );
+        <div>
+            <Provider store={store}>
+                <CssVarsProvider disableTransitionOnChange>
+                    {isProtectedRoute && isAuthenticated ? (
+                        <Layout>
+                            <Component {...pageProps} />
+                        </Layout>
+                    ) : (
+                        <JoySignInSideTemplate/>
+                        )}
+                </CssVarsProvider>
+            </Provider>
+        </div>
+    );
 }

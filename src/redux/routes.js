@@ -4,7 +4,7 @@ const v1 = 'v1';
 // Root
 const authRoot = 'auth';
 const userRoot = 'user';
-const contentManagementRoot = 'single-content';
+const contentManagementRoot = 'content-management';
 const typeRoot = 'type';
 const offerRequestRoot = 'offer-request';
 

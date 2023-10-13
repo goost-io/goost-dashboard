@@ -5,7 +5,6 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
-import Divider from '@mui/joy/Divider';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
@@ -16,6 +15,12 @@ import Stack from '@mui/joy/Stack';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
+import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {loginUser} from "@/redux/auth/loginUser";
+import {configureStoreWith} from "@/redux/store";
+import {Alert, Snackbar} from "@mui/material";
+import {useRouter} from "next/router";
 
 interface FormElements extends HTMLFormControlsCollection {
     email: HTMLInputElement;
@@ -29,6 +34,7 @@ interface SignInFormElement extends HTMLFormElement {
 function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
     const { mode, setMode } = useColorScheme();
     const [mounted, setMounted] = React.useState(false);
+
     React.useEffect(() => {
         setMounted(true);
     }, []);
@@ -57,7 +63,30 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
     );
 }
 
+const store = configureStoreWith();
+
 export default function JoySignInSideTemplate() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const router = useRouter();
+    const dispatch = useDispatch();
+
+    const handleClick = async (event: React.MouseEvent) => {
+        event.preventDefault();
+        dispatch(loginUser({ email, password}))
+            .unwrap()
+            .then(() => {
+                setEmail("");
+                setPassword("");
+                router.push("/dashboard");
+            })
+            .catch(() => {
+                setSnackbarOpen(true);
+            });
+
+    }
+
     return (
         <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
             <CssBaseline />
@@ -160,11 +189,11 @@ export default function JoySignInSideTemplate() {
                             >
                                 <FormControl required>
                                     <FormLabel>Email</FormLabel>
-                                    <Input type="email" name="email" />
+                                    <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" />
                                 </FormControl>
                                 <FormControl required>
                                     <FormLabel>Password</FormLabel>
-                                    <Input type="password" name="password" />
+                                    <Input onChange={(e) => setPassword(e.target.value)} type="password" name="password" />
                                 </FormControl>
                                 <Stack gap={4} sx={{ mt: 2 }}>
                                     <Box
@@ -179,7 +208,7 @@ export default function JoySignInSideTemplate() {
                                             Forgot your password?
                                         </Link>
                                     </Box>
-                                    <Button type="submit" fullWidth>
+                                    <Button onClick={handleClick} type="submit" fullWidth>
                                         Sign in
                                     </Button>
                                 </Stack>
