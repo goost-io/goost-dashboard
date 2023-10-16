@@ -1,15 +1,25 @@
 import axios from "axios";
 
-const token = "localStorage.getItem()";
 const axiosInstance = axios.create({
-    baseURL:
-        process.env.REACT_APP_BASE_URL +
-        ":" +
-        process.env.REACT_APP_BASE_BACKEND_PORT, // Replace with your desired base URL
+    baseURL: process.env.REACT_APP_BASE_URL + ':' + process.env.REACT_APP_BASE_BACKEND_PORT,
     headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${(token ? token : "")}`,
+        'Content-Type': 'application/json',
     },
 });
 
-export default axiosInstance;
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            // Configure this as per your backend requirements
+            config.headers["Authorization"] = 'Bearer ' + token;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+
+export {axiosInstance};

@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {singleContentList} from "@/redux/single-content/content.list";
 
-const initialState = {
-    title: "",
-    type: "",
-    content: "",
+export const initialState = {
+    contents:[],
     loading: false,
     error: null,
     success: null,
@@ -16,7 +14,7 @@ export const singleContentSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(singleContentList.fulfilled, (state, action) => {
-            state.content = action.payload;
+            state.contents = action.payload.data;
             state.loading = false;
         });
         builder.addCase(singleContentList.pending, (state, action) => {

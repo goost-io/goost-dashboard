@@ -22,6 +22,7 @@ import {configureStoreWith} from "@/redux/store";
 import { ToastContainer, toast } from 'react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
 import {useRouter} from "next/router";
+import {setAuthorizationHeader} from "@/redux/axios.instance";
 
 interface FormElements extends HTMLFormControlsCollection {
     email: HTMLInputElement;

@@ -1,5 +1,5 @@
-import axiosInstance from "@/redux/axios.instance";
 import {routesV1} from "@/redux/routes";
+import {axiosInstance} from "@/redux/axios.instance";
 
 export const getAll = async () => {
     return await axiosInstance.get(
