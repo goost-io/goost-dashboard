@@ -1,10 +1,14 @@
 .leftsidebardark .LeftSidebarNav {
-  background-color: var(--cardBg);
-  box-shadow: none;
+    background-color: var(--cardBg);
+    box-shadow: none;
 }
+
 .leftsidebardark .LeftSidebarNav .black-logo {
-  display: none;
+    display: none;
 }
+
 .leftsidebardark .LeftSidebarNav .white-logo {
-  display: inline-block;
-}/*# sourceMappingURL=leftSidebarDark.css.map */
+    display: inline-block;
+}
+
+/*# sourceMappingURL=leftSidebarDark.css.map */

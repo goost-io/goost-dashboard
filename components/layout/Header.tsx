@@ -4,13 +4,13 @@ import Sheet from '@mui/joy/Sheet';
 import IconButton from '@mui/joy/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { toggleSidebar } from '../dashboard/utils';
+import {toggleSidebar} from '../dashboard/utils';
 
 export default function Header() {
     return (
         <Sheet
             sx={{
-                display: { xs: 'flex', md: 'none' },
+                display: {xs: 'flex', md: 'none'},
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 position: 'fixed',
@@ -41,7 +41,7 @@ export default function Header() {
                 color="neutral"
                 size="sm"
             >
-                <MenuIcon />
+                <MenuIcon/>
             </IconButton>
         </Sheet>
     );

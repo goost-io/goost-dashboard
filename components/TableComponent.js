@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Table from '@mui/joy/Table';
 
-export default function TableComponent({ columns, data }) {
+export default function TableComponent({columns, data}) {
     return (
-        <Table sx={{ '& thead th:nth-child(1)': { width: '40%' } }}>
+        <Table sx={{'& thead th:nth-child(1)': {width: '40%'}}}>
             <thead>
             <tr>
                 {columns.map((column) => (

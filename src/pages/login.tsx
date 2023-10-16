@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import {useState} from 'react';
+import {CssVarsProvider, useColorScheme} from '@mui/joy/styles';
 import GlobalStyles from '@mui/joy/GlobalStyles';
 import CssBaseline from '@mui/joy/CssBaseline';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Checkbox from '@mui/joy/Checkbox';
 import FormControl from '@mui/joy/FormControl';
-import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
-import IconButton, { IconButtonProps } from '@mui/joy/IconButton';
+import FormLabel, {formLabelClasses} from '@mui/joy/FormLabel';
+import IconButton, {IconButtonProps} from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
 import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
@@ -15,33 +16,32 @@ import Stack from '@mui/joy/Stack';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import BadgeRoundedIcon from '@mui/icons-material/BadgeRounded';
-import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {loginUser} from "@/redux/auth/loginUser";
 import {configureStoreWith} from "@/redux/store";
-import { ToastContainer, toast } from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 import 'material-react-toastify/dist/ReactToastify.css';
 import {useRouter} from "next/router";
-import {setAuthorizationHeader} from "@/redux/axios.instance";
 
 interface FormElements extends HTMLFormControlsCollection {
     email: HTMLInputElement;
     password: HTMLInputElement;
     persistent: HTMLInputElement;
 }
+
 interface SignInFormElement extends HTMLFormElement {
     readonly elements: FormElements;
 }
 
-function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
-    const { mode, setMode } = useColorScheme();
+function ColorSchemeToggle({onClick, ...props}: IconButtonProps) {
+    const {mode, setMode} = useColorScheme();
     const [mounted, setMounted] = React.useState(false);
 
     React.useEffect(() => {
         setMounted(true);
     }, []);
     if (!mounted) {
-        return <IconButton size="sm" variant="outlined" color="neutral" disabled />;
+        return <IconButton size="sm" variant="outlined" color="neutral" disabled/>;
     }
     return (
         <IconButton
@@ -60,7 +60,7 @@ function ColorSchemeToggle({ onClick, ...props }: IconButtonProps) {
                 onClick?.(event);
             }}
         >
-            {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+            {mode === 'light' ? <DarkModeRoundedIcon/> : <LightModeRoundedIcon/>}
         </IconButton>
     );
 }
@@ -76,7 +76,7 @@ export default function JoySignInSideTemplate() {
 
     const handleClick = async (event: React.MouseEvent) => {
         event.preventDefault();
-        dispatch(loginUser({ email, password}))
+        dispatch(loginUser({email, password}))
             .unwrap()
             .then(() => {
                 setEmail("");
@@ -92,7 +92,7 @@ export default function JoySignInSideTemplate() {
 
     return (
         <CssVarsProvider defaultMode="dark" disableTransitionOnChange>
-            <CssBaseline />
+            <CssBaseline/>
             <GlobalStyles
                 styles={{
                     ':root': {
@@ -148,11 +148,11 @@ export default function JoySignInSideTemplate() {
                             }}
                         >
                             <IconButton variant="soft" color="primary" size="sm">
-                                <BadgeRoundedIcon />
+                                <BadgeRoundedIcon/>
                             </IconButton>
                             <Typography level="title-lg">Goost.io</Typography>
                         </Box>
-                        <ColorSchemeToggle />
+                        <ColorSchemeToggle/>
                     </Box>
                     <Box
                         component="main"
@@ -177,7 +177,7 @@ export default function JoySignInSideTemplate() {
                             },
                         }}
                     >
-                        <Stack gap={4} sx={{ mt: 2 }}>
+                        <Stack gap={4} sx={{mt: 2}}>
                             <form
                                 onSubmit={(event: React.FormEvent<SignInFormElement>) => {
                                     event.preventDefault();
@@ -192,13 +192,14 @@ export default function JoySignInSideTemplate() {
                             >
                                 <FormControl required>
                                     <FormLabel>Email</FormLabel>
-                                    <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email" />
+                                    <Input onChange={(e) => setEmail(e.target.value)} type="email" name="email"/>
                                 </FormControl>
                                 <FormControl required>
                                     <FormLabel>Password</FormLabel>
-                                    <Input onChange={(e) => setPassword(e.target.value)} type="password" name="password" />
+                                    <Input onChange={(e) => setPassword(e.target.value)} type="password"
+                                           name="password"/>
                                 </FormControl>
-                                <Stack gap={4} sx={{ mt: 2 }}>
+                                <Stack gap={4} sx={{mt: 2}}>
                                     <Box
                                         sx={{
                                             display: 'flex',
@@ -206,7 +207,7 @@ export default function JoySignInSideTemplate() {
                                             alignItems: 'center',
                                         }}
                                     >
-                                        <Checkbox size="sm" label="Remember me" name="persistent" />
+                                        <Checkbox size="sm" label="Remember me" name="persistent"/>
                                         <Link level="title-sm" href="#replace-with-a-link">
                                             Forgot your password?
                                         </Link>
@@ -216,12 +217,12 @@ export default function JoySignInSideTemplate() {
                                     </Button>
                                 </Stack>
                             </form>
-                            <ToastContainer />
+                            <ToastContainer/>
                         </Stack>
                     </Box>
-                    <Box component="footer" sx={{ py: 3 }}>
+                    <Box component="footer" sx={{py: 3}}>
                         <Typography level="body-xs" textAlign="center">
-                           Copyright © Goost.io {new Date().getFullYear()}
+                            Copyright © Goost.io {new Date().getFullYear()}
                         </Typography>
                     </Box>
                 </Box>

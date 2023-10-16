@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {singleContentList} from "@/redux/single-content/content.list";
 
 export const initialState = {
-    contents:[],
+    contents: [],
     loading: false,
     error: null,
     success: null,
@@ -25,4 +25,4 @@ export const singleContentSlice = createSlice({
             state.error = action.error.message;
         });
     },
-    });
+});

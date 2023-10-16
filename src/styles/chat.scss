@@ -5,7 +5,7 @@
     height: 648px;
     overflow-y: auto;
     padding-right: 10px;
- 
+
     .react-tabs__tab {
       display: block;
       padding: 5px 0;
@@ -17,6 +17,7 @@
 
       &:focus, &:focus-visible {
         outline: 0;
+
         &:after {
           background: transparent;
         }
@@ -29,18 +30,20 @@
     }
   }
 }
+
 .active-status {
   width: 13px;
-  height: 13px; 
+  height: 13px;
   position: absolute;
   bottom: 4px;
   right: 3px;
   border: 2px solid #fff;
   border-radius: 100%;
 }
+
 .active-status2 {
   width: 13px;
-  height: 13px; 
+  height: 13px;
   display: inline-block;
   border: 2px solid #fff;
   border-radius: 100%;
@@ -52,16 +55,18 @@
 .left-replay-box {
   position: relative;
 }
+
 .left-replay-box .hover-caption {
   background: #fff;
   box-shadow: 0px 10px 35px rgba(50, 110, 189, 0.2);
   border-radius: 10px;
   visibility: hidden;
   transition: .6s;
-  position: absolute; 
+  position: absolute;
   left: 0;
   top: 30px;
 }
+
 .left-replay-box:hover .hover-caption {
   visibility: visible;
 }
@@ -70,16 +75,18 @@
 .right-replay-box {
   position: relative;
 }
+
 .right-replay-box .hover-caption {
   background: #fff;
   box-shadow: 0px 10px 35px rgba(50, 110, 189, 0.2);
   border-radius: 10px;
   visibility: hidden;
   transition: .6s;
-  position: absolute; 
+  position: absolute;
   right: 0;
   top: 30px;
 }
+
 .right-replay-box:hover .hover-caption {
   visibility: visible;
 }
@@ -100,18 +107,18 @@
       padding-left: 10px;
     }
   }
-  
+
   .active-status {
     right: 0;
     left: 3px;
   }
-  
+
   // left-replay-box
   .left-replay-box .hover-caption {
     left: auto;
     right: 0;
   }
-  
+
   // right-replay-box
   .right-replay-box .hover-caption {
     right: auto;
@@ -122,7 +129,7 @@
 /* For dark mode */
 [class="dark"] .chat-tabs {
   .react-tabs__tab-list {
-    
+
     .react-tabs__tab {
       border-bottom: 1px solid var(--borderColor);
 
@@ -142,9 +149,11 @@
   .for-dark-chat-box {
     border: 1px solid var(--borderColor);
   }
+
   .for-dark-chat-header {
     border-bottom: 1px solid var(--borderColor);
   }
+
   .for-dark-button {
     background: #000;
   }

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { ColorPaletteProp } from '@mui/joy/styles';
+import {ColorPaletteProp} from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Avatar from '@mui/joy/Avatar';
 import Chip from '@mui/joy/Chip';
@@ -92,16 +92,16 @@ function RowMenu() {
     return (
         <Dropdown>
             <MenuButton
-                slots={{ root: IconButton }}
-                slotProps={{ root: { variant: 'plain', color: 'neutral', size: 'sm' } }}
+                slots={{root: IconButton}}
+                slotProps={{root: {variant: 'plain', color: 'neutral', size: 'sm'}}}
             >
-                <MoreHorizRoundedIcon />
+                <MoreHorizRoundedIcon/>
             </MenuButton>
-            <Menu size="sm" sx={{ minWidth: 140 }}>
+            <Menu size="sm" sx={{minWidth: 140}}>
                 <MenuItem>Edit</MenuItem>
                 <MenuItem>Rename</MenuItem>
                 <MenuItem>Move</MenuItem>
-                <Divider />
+                <Divider/>
                 <MenuItem color="danger">Delete</MenuItem>
             </Menu>
         </Dropdown>
@@ -110,7 +110,7 @@ function RowMenu() {
 
 export default function OrderList() {
     return (
-        <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+        <Box sx={{display: {xs: 'block', sm: 'none'}}}>
             {listItems.map((listItem) => (
                 <List
                     key={listItem.id}
@@ -126,7 +126,7 @@ export default function OrderList() {
                             alignItems: 'start',
                         }}
                     >
-                        <ListItemContent sx={{ display: 'flex', gap: 2, alignItems: 'start' }}>
+                        <ListItemContent sx={{display: 'flex', gap: 2, alignItems: 'start'}}>
                             <ListItemDecorator>
                                 <Avatar size="sm">{listItem.customer.initial}</Avatar>
                             </ListItemDecorator>
@@ -150,11 +150,11 @@ export default function OrderList() {
                                     <Typography level="body-xs">&bull;</Typography>
                                     <Typography level="body-xs">{listItem.id}</Typography>
                                 </Box>
-                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                                <Box sx={{display: 'flex', alignItems: 'center', gap: 1, mb: 1}}>
                                     <Link level="body-sm" component="button">
                                         Download
                                     </Link>
-                                    <RowMenu />
+                                    <RowMenu/>
                                 </Box>
                             </div>
                         </ListItemContent>
@@ -163,9 +163,9 @@ export default function OrderList() {
                             size="sm"
                             startDecorator={
                                 {
-                                    Paid: <CheckRoundedIcon />,
-                                    Refunded: <AutorenewRoundedIcon />,
-                                    Cancelled: <BlockIcon />,
+                                    Paid: <CheckRoundedIcon/>,
+                                    Refunded: <AutorenewRoundedIcon/>,
+                                    Cancelled: <BlockIcon/>,
                                 }[listItem.status]
                             }
                             color={
@@ -179,12 +179,12 @@ export default function OrderList() {
                             {listItem.status}
                         </Chip>
                     </ListItem>
-                    <ListDivider />
+                    <ListDivider/>
                 </List>
             ))}
             <Box
                 className="Pagination-mobile"
-                sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', py: 2 }}
+                sx={{display: {xs: 'flex', md: 'none'}, alignItems: 'center', py: 2}}
             >
                 <IconButton
                     aria-label="previous page"
@@ -192,7 +192,7 @@ export default function OrderList() {
                     color="neutral"
                     size="sm"
                 >
-                    <KeyboardArrowLeftIcon />
+                    <KeyboardArrowLeftIcon/>
                 </IconButton>
                 <Typography level="body-sm" mx="auto">
                     Page 1 of 10
@@ -203,7 +203,7 @@ export default function OrderList() {
                     color="neutral"
                     size="sm"
                 >
-                    <KeyboardArrowRightIcon />
+                    <KeyboardArrowRightIcon/>
                 </IconButton>
             </Box>
         </Box>
