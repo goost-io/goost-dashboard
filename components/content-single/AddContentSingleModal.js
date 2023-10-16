@@ -17,12 +17,11 @@ export default function AddContentSingleModal() {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const [type, setType] = useState("");
-    const [language, setLanguage] = useState("");
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(singleContentCreate({"title": title, "type":type, "content":content, "language":language})).unwrap().then(() => {
+        dispatch(singleContentCreate({title, type, content})).unwrap().then(() => {
             console.log("slice worked")
         }).catch((err) => {
             console.log(err)
@@ -56,10 +55,6 @@ export default function AddContentSingleModal() {
                             <FormControl>
                                 <FormLabel>İçerik</FormLabel>
                                 <TinyMceEditor onChange={e => setContent(e)}/>
-                            </FormControl>
-                            <FormControl>
-                                <FormLabel>Language</FormLabel>
-                                <Input onChange={e => setLanguage(e.target.value)}/>
                             </FormControl>
                             <Button type='submit'>Submit</Button>
                         </Stack>
