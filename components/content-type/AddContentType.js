@@ -9,21 +9,19 @@ import DialogTitle from "@mui/joy/DialogTitle";
 import DialogContent from "@mui/joy/DialogContent";
 import Stack from "@mui/joy/Stack";
 import Add from "@mui/icons-material/Add";
-import {TinyMceEditor} from "../TinyMceEditor";
 import {useDispatch} from "react-redux";
 import {singleContentCreate} from "@/redux/single-content/content.create";
 import {toast} from "react-toastify";
 
-export default function AddContentSingleModal() {
+export default function AddContentType() {
     const [open, setOpen] = useState(false);
-    const [content, setContent] = useState("");
-    const [title, setTitle] = useState("");
     const [type, setType] = useState("");
+    const [description, setDescription] = useState("");
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(singleContentCreate({title, type, content})).unwrap().then(() => {
+        dispatch(singleContentCreate({type, description})).unwrap().then(() => {
             setOpen(false);
             toast.success("İçerik Tipi Eklendi");
         }).catch((err) => {
@@ -40,25 +38,21 @@ export default function AddContentSingleModal() {
                 color='neutral'
                 startIcon={<Add/>}
                 onClick={() => setOpen(true)}>
-                Yeni İçerik
+                Yeni İçerik Tipi
             </Button>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog>
-                    <DialogTitle>Yeni İçerik Ekle</DialogTitle>
+                    <DialogTitle>Yeni İçerik Tipi Ekle</DialogTitle>
                     <DialogContent>
                         <form onSubmit={handleSubmit}>
                             <Stack spacing={2}>
                                 <FormControl>
-                                    <FormLabel>Başlık ( Zorunlu Değil )</FormLabel>
-                                    <Input autoFocus onChange={e => setTitle(e.target.value)}/>
-                                </FormControl>
-                                <FormControl>
                                     <FormLabel>Tip</FormLabel>
-                                    <Input onChange={e => setType(e.target.value)} required/>
+                                    <Input autoFocus onChange={e => setType(e.target.value)}/>
                                 </FormControl>
                                 <FormControl>
-                                    <FormLabel>İçerik</FormLabel>
-                                    <TinyMceEditor onChange={e => setContent(e)}/>
+                                    <FormLabel>Açıklama</FormLabel>
+                                    <Input onChange={e => setDescription(e.target.value)} required/>
                                 </FormControl>
                                 <Button type='submit'>Ekle</Button>
                             </Stack>

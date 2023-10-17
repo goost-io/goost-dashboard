@@ -2,6 +2,10 @@ import * as React from 'react';
 import Table from '@mui/joy/Table';
 
 export default function TableComponent({columns, data}) {
+    if (data === undefined || data.length === 0 || !Array.isArray(data)) {
+        return <p>Veri Bulunamadı</p>;
+    }
+
     return (
         <Table sx={{'& thead th:nth-child(1)': {width: '40%'}}}>
             <thead>
@@ -12,6 +16,7 @@ export default function TableComponent({columns, data}) {
             </tr>
             </thead>
             <tbody>
+
             {data.map((row, index) => (
                 <tr key={index}>
                     {columns.map((column) => (
@@ -19,6 +24,7 @@ export default function TableComponent({columns, data}) {
                     ))}
                 </tr>
             ))}
+
             </tbody>
         </Table>
     );

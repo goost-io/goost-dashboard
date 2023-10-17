@@ -34,7 +34,7 @@
     "**/*.ts",
     "**/*.tsx",
     "src/pages/dashboard.tsx",
-    "components/add-language/AddLangBtnModal.js",
+    "components/language/AddLangBtnModal.js",
     "src/pages/dashboard/content-single.tsx"
   ],
   "exclude": [

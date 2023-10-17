@@ -215,12 +215,12 @@ export default function Sidebar() {
                             )}>
                             <List sx={{gap: 0.5}}>
                                 <ListItem sx={{mt: 0.5}}>
-                                    <Link href='/dashboard/add-language' passHref>
+                                    <Link href='/dashboard/language-type' passHref>
                                         <ListItemButton>Dil Ekleme Yönetimi </ListItemButton>
                                     </Link>
                                 </ListItem>
                                 <ListItem sx={{mt: 0.5}}>
-                                    <Link href='/dashboard/add-language' passHref>
+                                    <Link href='/dashboard/content-type' passHref>
                                         <ListItemButton>İçerik Tipi Yönetimi</ListItemButton>
                                     </Link>
                                 </ListItem>
@@ -231,7 +231,9 @@ export default function Sidebar() {
                         <ListItemButton selected>
                             <LocalOfferIcon/>
                             <ListItemContent>
-                                <Typography level='title-sm'>Teklifler</Typography>
+                                <Link href='/dashboard/offer-request' passHref>
+                                    <Typography level='title-sm'>Teklifler</Typography>
+                                </Link>
                             </ListItemContent>
                         </ListItemButton>
                     </ListItem>

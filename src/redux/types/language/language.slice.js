@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {languageList} from "@/redux/types/language/language.list";
 
-const initialState = {
+export const initialState = {
     languages: [],
     loading: false,
     error: null,

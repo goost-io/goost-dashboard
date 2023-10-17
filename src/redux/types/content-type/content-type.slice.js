@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {contentTypeList} from "@/redux/types/content-type/content-type.list";
 
-const initialState = {
+export const initialState = {
     contentTypes: [],
     loading: false,
     error: null,

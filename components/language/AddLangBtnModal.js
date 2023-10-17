@@ -24,11 +24,10 @@ export default function AddLanguageModal() {
         dispatch(languageCreate({language, code}))
             .unwrap()
             .then(() => {
-                toast.success("İçerik Eklendi");
-                console.log("slice worked");
+                setOpen(false);
+                toast.success("İçerik Tipi Eklendi");
             })
             .catch((err) => {
-                console.log(err);
                 setOpen(true);
                 toast.error("Bir Hata Oluştu");
             });
@@ -62,7 +61,7 @@ export default function AddLanguageModal() {
                                 <FormLabel>Dil Kodu</FormLabel>
                                 <Input required onChange={(e) => setCode(e.target.value)}/>
                             </FormControl>
-                            <Button type='submit'>Submit</Button>
+                            <Button type='submit'>Ekle</Button>
                         </Stack>
                     </form>
                 </ModalDialog>
