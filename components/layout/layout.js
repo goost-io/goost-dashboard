@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
+import Header from "./header";
+import SideBar from "./sideBar";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
 import {useTheme} from "@mui/joy/styles";
@@ -22,10 +22,10 @@ export default function Layout({children}) {
                 <Header/>
                 <Box
                     sx={{
-                        width: "var(--Sidebar-width)",
+                        width: "var(--SideBar-width)",
                         flexShrink: 0,
                     }}>
-                    <Sidebar/>
+                    <SideBar/>
                 </Box>
                 <Box
                     component='main'

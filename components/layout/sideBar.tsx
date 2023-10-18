@@ -59,7 +59,7 @@ function Toggler({
     );
 }
 
-export default function Sidebar() {
+export default function SideBar() {
     return (
         <Sheet
             className='Sidebar'
@@ -75,7 +75,7 @@ export default function Sidebar() {
                 transition: "transform 0.4s, width 0.4s",
                 zIndex: 10000,
                 height: "100dvh",
-                width: "var(--Sidebar-width)",
+                width: "var(--SideBar-width)",
                 top: 0,
                 p: 2,
                 flexShrink: 0,
@@ -108,7 +108,7 @@ export default function Sidebar() {
                     backgroundColor: "var(--joy-palette-background-backdrop)",
                     transition: "opacity 0.4s",
                     transform: {
-                        xs: "translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--Sidebar-width, 0px)))",
+                        xs: "translateX(calc(100% * (var(--SideNavigation-slideIn, 0) - 1) + var(--SideNavigation-slideIn, 0) * var(--SideBar-width, 0px)))",
                         lg: "translateX(-100%)",
                     },
                 }}

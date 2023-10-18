@@ -87,7 +87,6 @@ export default function JoySignInSideTemplate() {
                 toast('Giriş Yapıldı');
                 setSnackbarOpen(true);
             });
-
     }
 
     return (
