@@ -6,6 +6,7 @@ import {configureStoreWith} from "@/redux/store";
 import {useRouter} from "next/router";
 import JoySignInSideTemplate from "@/pages/login";
 import "material-react-toastify/dist/ReactToastify.css";
+import {tokenValidation} from "../../tokenValidation";
 
 const store = configureStoreWith();
 
@@ -22,8 +23,7 @@ export default function App({Component, pageProps}) {
     /* Implement your authentication check here */
 
     //here you can check if the user is authenticated
-    //   const isAuthenticated = tokenValidation();
-    const isAuthenticated = true;
+    const isAuthenticated = tokenValidation();
 
     return (
         <div>
