@@ -43,7 +43,7 @@ app.prepare().then(() => {
     // Create an HTTPS server with your SSL certificates
     const httpsServer = https.createServer(credentials, server);
 
-    const httpsPort = process.env.HTTPS_PORT || 3000; // Default HTTPS port
+    const httpsPort = process.env.HTTPS_PORT || 4000; // Default HTTPS port
 
     httpsServer.listen(httpsPort, (err) => {
         if (err) throw err;
