@@ -13,6 +13,9 @@ app.prepare().then(() => {
 
     // Middleware to force HTTPS
     server.use((req, res, next) => {
+        if (req.protocol === 'http' && !req.secure) {
+            return;
+        }
         // If the request is already using HTTPS or in a non-production environment, continue to the next middleware.
         next();
     });
