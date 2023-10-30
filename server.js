@@ -30,9 +30,9 @@ app.prepare().then(() => {
     });
 
     // Load SSL certificate files
-    const privateKey = fs.readFileSync('/Users/basyapim/Goost-Projects/certifications/private.key', 'utf8');
-    const certificate = fs.readFileSync('/Users/basyapim/Goost-Projects/certifications/certificate.crt', 'utf8');
-    const caBundle = fs.readFileSync('/Users/basyapim/Goost-Projects/certifications/ca_bundle.crt', 'utf8');
+    const privateKey = fs.readFileSync('private.key', 'utf8');
+    const certificate = fs.readFileSync('certificate.crt', 'utf8');
+    const caBundle = fs.readFileSync('ca_bundle.crt', 'utf8');
 
     const credentials = {
         key: privateKey,
