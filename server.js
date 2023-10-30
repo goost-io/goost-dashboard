@@ -14,7 +14,9 @@ app.prepare().then(() => {
     // Middleware to force HTTPS
     server.use((req, res, next) => {
         if (req.protocol === 'http' && !req.secure) {
-            return;
+            // If the request is using HTTP, redirect to HTTPS.
+            console.log(`Redirecting to https://${req.headers.host}${req.url}`);
+            return res.redirect(`https://${req.headers.host}${req.url}`);
         }
         // If the request is already using HTTPS or in a non-production environment, continue to the next middleware.
         next();
@@ -28,9 +30,9 @@ app.prepare().then(() => {
     });
 
     // Load SSL certificate files
-    const privateKey = fs.readFileSync('private.key', 'utf8');
-    const certificate = fs.readFileSync('certificate.crt', 'utf8');
-    const caBundle = fs.readFileSync('ca_bundle.crt', 'utf8');
+    const privateKey = fs.readFileSync('/Users/basyapim/Goost-Projects/certifications/private.key', 'utf8');
+    const certificate = fs.readFileSync('/Users/basyapim/Goost-Projects/certifications/certificate.crt', 'utf8');
+    const caBundle = fs.readFileSync('/Users/basyapim/Goost-Projects/certifications/ca_bundle.crt', 'utf8');
 
     const credentials = {
         key: privateKey,
