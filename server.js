@@ -41,8 +41,8 @@ app.prepare().then(() => {
         console.log(`Server is running on port ${httpPort}`);
     });
 
-    httpsServer.listen(httpsPort, (err) => {
+    httpsServer.listen(httpPort, (err) => {
         if (err) throw err;
-        console.log(`Server is running on HTTPS port ${httpsPort}`);
+        console.log(`Server is running on HTTPS port ${httpPort}`);
     });
 });
