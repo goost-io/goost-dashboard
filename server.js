@@ -12,17 +12,6 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = express();
 
-    // Middleware to force HTTPS
-    server.use((req, res, next) => {
-        if (!req.secure) {
-            // If the request is using HTTP, redirect to HTTPS.
-            console.log(`Redirecting to https://${req.headers.host}${req.url}`);
-            return res.redirect(301, `https://${req.headers.host}${req.url}`);
-        }
-        // If the request is already using HTTPS or in a non-production environment, continue to the next middleware.
-        next();
-    });
-
     // Serve Next.js pages
     server.get('*', (req, res) => {
         const parsedUrl = parse(req.url, true);
