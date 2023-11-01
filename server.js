@@ -14,7 +14,7 @@ app.prepare().then(() => {
 
     // Middleware to force HTTPS
     server.use((req, res, next) => {
-        if (req.protocol === 'http' && !req.secure) {
+        if (req.protocol === 'http') {
             // If the request is using HTTP, redirect to HTTPS.
             console.log(`Redirecting to https://${req.headers.host}${req.url}`);
             return res.redirect(`https://${req.headers.host}${req.url}`);
