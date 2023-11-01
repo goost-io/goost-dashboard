@@ -9,10 +9,10 @@ import DialogTitle from "@mui/joy/DialogTitle";
 import DialogContent from "@mui/joy/DialogContent";
 import Stack from "@mui/joy/Stack";
 import Add from "@mui/icons-material/Add";
-import {TinyMceEditor} from "../TinyMceEditor";
 import {useDispatch} from "react-redux";
 import {singleContentCreate} from "@/redux/single-content/content.create";
 import {toast} from "react-toastify";
+import {Textarea} from "@mui/joy";
 
 export default function AddContentSingleModal() {
     const [open, setOpen] = useState(false);
@@ -61,9 +61,26 @@ export default function AddContentSingleModal() {
                                     <FormLabel>Dil</FormLabel>
                                     <Input onChange={e => setLanguage(e.target.value)} required/>
                                 </FormControl>
+                                {/*CK EDITOR*/}
+                                {/*<FormControl>*/}
+                                {/*    <FormLabel>İçerik</FormLabel>*/}
+                                {/*    <TinyMceEditor onChange={e => setContent(e)}/>*/}
+                                {/*</FormControl>*/}
                                 <FormControl>
                                     <FormLabel>İçerik</FormLabel>
-                                    <TinyMceEditor onChange={e => setContent(e)}/>
+                                    <Textarea
+                                        placeholder="Type in here…"
+                                        minRows={2}
+                                        sx={{
+                                            '&::before': {
+                                                display: 'none',
+                                            },
+                                            '&:focus-within': {
+                                                outline: '2px solid var(--Textarea-focusedHighlight)',
+                                                outlineOffset: '2px',
+                                            },
+                                        }}
+                                    />
                                 </FormControl>
                                 <Button type='submit'>Ekle</Button>
                             </Stack>

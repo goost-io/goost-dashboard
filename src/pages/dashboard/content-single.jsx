@@ -6,7 +6,7 @@ import {singleContentList} from "../../redux/single-content/content.list";
 import TableComponent from "../../../components/TableComponent";
 
 export default function ContentSingle() {
-    const columns = ['id', 'title', 'type', 'content', 'language'];
+    const columns = ['id', 'title', 'language'];
     const dispatch = useDispatch();
     const {contents} = useSelector((state) => state.singleContent);
 
