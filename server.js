@@ -42,16 +42,9 @@ app.prepare().then(() => {
     };
 
     // Create an HTTP server to handle both HTTP and HTTPS requests
-    const httpServer = http.createServer(server);
     const httpsServer = https.createServer(credentials, server);
 
-    const httpPort = process.env.PORT || 4001; // Use the same port for both HTTP and HTTPS
     const httpsPort = process.env.PORT || 4000; // Use the same port for both HTTP and HTTPS
-
-    httpServer.listen(httpPort, (err) => {
-        if (err) throw err;
-        console.log(`Server is running on port ${httpPort}`);
-    });
 
     httpsServer.listen(httpsPort, (err) => {
         if (err) throw err;
