@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {CssVarsProvider} from "@mui/joy/styles";
 import Layout from "../../components/layout/layout";
 import {Provider} from "react-redux";
@@ -23,7 +23,11 @@ export default function App({Component, pageProps}) {
     /* Implement your authentication check here */
 
     //here you can check if the user is authenticated
-    const isAuthenticated = tokenValidation();
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
+    useEffect(() => {
+        setIsAuthenticated(tokenValidation());
+    });
 
     return (
         <div>

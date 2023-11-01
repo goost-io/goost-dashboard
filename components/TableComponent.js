@@ -7,8 +7,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 export default function TableComponent({columns, data}) {
     if (data === undefined || data.length === 0 || !Array.isArray(data)) {
-        // return <p>Veri Bulunamadı</p>;
-        return;
+        return <p> Veri Bulunamadı</p>;
     }
 
     return (
