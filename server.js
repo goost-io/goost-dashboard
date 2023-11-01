@@ -14,10 +14,10 @@ app.prepare().then(() => {
 
     // Middleware to force HTTPS
     server.use((req, res, next) => {
-        if (req.protocol === 'http') {
+        if (!req.secure) {
             // If the request is using HTTP, redirect to HTTPS.
             console.log(`Redirecting to https://${req.headers.host}${req.url}`);
-            return res.redirect(`https://${req.headers.host}${req.url}`);
+            return res.redirect(301, `https://${req.headers.host}${req.url}`);
         }
         // If the request is already using HTTPS or in a non-production environment, continue to the next middleware.
         next();
