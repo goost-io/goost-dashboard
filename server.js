@@ -2,13 +2,14 @@ const express = require('express');
 const { parse } = require('url');
 const next = require('next');
 const https = require('https');
-const http = require('http');
 const fs = require('fs');
+const httpsProxy = require('https-proxy');
+
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-
+const proxy = httpsProxy.createProxyServer();
 app.prepare().then(() => {
     const server = express();
 
@@ -16,6 +17,10 @@ app.prepare().then(() => {
     server.get('*', (req, res) => {
         const parsedUrl = parse(req.url, true);
         const { pathname, query } = parsedUrl;
+        if (pathname.startsWith('/v1')) {
+            // Use the http-proxy module to forward the request
+            proxy.web(req, res, { target: 'https://goost.io:3000' });
+        }
         return handle(req, res, parsedUrl);
     });
 
