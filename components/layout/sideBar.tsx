@@ -41,6 +41,7 @@ function Toggler({
     }) => React.ReactNode;
 }) {
     const [open, setOpen] = React.useState(defaultExpanded);
+
     return (
         <React.Fragment>
             {renderToggle({open, setOpen})}
@@ -60,6 +61,12 @@ function Toggler({
 }
 
 export default function SideBar() {
+    const [selectedItem, setSelectedItem] = React.useState(null);
+
+    const handleItemClick = (item) => {
+        setSelectedItem(item);
+    };
+
     return (
         <Sheet
             className='Sidebar'
@@ -99,7 +106,6 @@ export default function SideBar() {
                 className='Sidebar-overlay'
                 sx={{
                     position: "fixed",
-                    zIndex: 9998,
                     top: 0,
                     left: 0,
                     width: "100vw",
@@ -147,7 +153,8 @@ export default function SideBar() {
                         "--ListItem-radius": (theme) => theme.vars.radius.sm,
                     }}>
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton selected={selectedItem === 'home'}
+                                        onClick={() => handleItemClick('home')}>
                             <HomeRoundedIcon/>
                             <ListItemContent>
                                 <Link href='/dashboard'>
@@ -158,7 +165,8 @@ export default function SideBar() {
                     </ListItem>
 
                     <ListItem>
-                        <ListItemButton selected>
+                        <ListItemButton selected={selectedItem === 'category'}
+                                        onClick={() => handleItemClick('category')}>
                             <ShoppingCartRoundedIcon/>
                             <ListItemContent>
                                 <Typography level='title-sm'>Kategori Ekleme</Typography>
@@ -228,7 +236,8 @@ export default function SideBar() {
                         </Toggler>
                     </ListItem>
                     <ListItem>
-                        <ListItemButton selected>
+                        <ListItemButton selected={selectedItem === 'offers'}
+                                        onClick={() => handleItemClick('offers')}>
                             <LocalOfferIcon/>
                             <ListItemContent>
                                 <Link href='/dashboard/offer-request' passHref>

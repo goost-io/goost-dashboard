@@ -19,11 +19,12 @@ export default function AddContentSingleModal() {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const [type, setType] = useState("");
+    const [language, setLanguage] = useState("");
     const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(singleContentCreate({title, type, content})).unwrap().then(() => {
+        dispatch(singleContentCreate({title, type, language, content})).unwrap().then(() => {
             setOpen(false);
             toast.success("İçerik Tipi Eklendi");
         }).catch((err) => {
@@ -55,6 +56,10 @@ export default function AddContentSingleModal() {
                                 <FormControl>
                                     <FormLabel>Tip</FormLabel>
                                     <Input onChange={e => setType(e.target.value)} required/>
+                                </FormControl>
+                                <FormControl>
+                                    <FormLabel>Dil</FormLabel>
+                                    <Input onChange={e => setLanguage(e.target.value)} required/>
                                 </FormControl>
                                 <FormControl>
                                     <FormLabel>İçerik</FormLabel>

@@ -3,7 +3,8 @@ import Table from '@mui/joy/Table';
 
 export default function TableComponent({columns, data}) {
     if (data === undefined || data.length === 0 || !Array.isArray(data)) {
-        return <p>Veri Bulunamadı</p>;
+        // return <p>Veri Bulunamadı</p>;
+        return;
     }
 
     return (

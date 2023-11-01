@@ -12,6 +12,7 @@ import Add from "@mui/icons-material/Add";
 import {useDispatch} from "react-redux";
 import {singleContentCreate} from "@/redux/single-content/content.create";
 import {toast} from "react-toastify";
+import {contentTypeCreate} from "@/redux/types/content-type/content-type.create";
 
 export default function AddContentType() {
     const [open, setOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function AddContentType() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(singleContentCreate({type, description})).unwrap().then(() => {
+        dispatch(contentTypeCreate({type, description})).unwrap().then(() => {
             setOpen(false);
             toast.success("İçerik Tipi Eklendi");
         }).catch((err) => {
@@ -33,6 +34,7 @@ export default function AddContentType() {
 
     return (
         <>
+            <div>
             <Button
                 variant='outlined'
                 color='neutral'
@@ -40,6 +42,7 @@ export default function AddContentType() {
                 onClick={() => setOpen(true)}>
                 Yeni İçerik Tipi
             </Button>
+            </div>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog>
                     <DialogTitle>Yeni İçerik Tipi Ekle</DialogTitle>

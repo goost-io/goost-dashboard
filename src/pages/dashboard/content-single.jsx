@@ -27,11 +27,15 @@ export default function ContentSingle() {
                 <h1>İçerik</h1>
                 <AddContentSingleModal/>
             </div>
-            <Sheet
-                variant='outlined'
-                sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
-                <TableComponent columns={columns} data={contents}/>
-            </Sheet>
+            <div>
+            {contents.length === undefined ? <p>Yükleniyor...</p> : (
+                <Sheet
+                    variant='outlined'
+                    sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
+                    <TableComponent columns={columns} data={contents}/>
+                </Sheet>
+            )}
+            </div>
         </>
     );
 }
