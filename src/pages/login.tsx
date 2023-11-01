@@ -81,10 +81,12 @@ export default function JoySignInSideTemplate() {
             .then(() => {
                 setEmail("");
                 setPassword("");
+                toast('Giriş başarılı');
+                setSnackbarOpen(true);
                 router.push("/dashboard");
             })
             .catch(() => {
-                toast('Giriş Yapıldı');
+                toast('Email yada şifre hatalı');
                 setSnackbarOpen(true);
             });
     }
