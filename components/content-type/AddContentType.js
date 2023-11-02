@@ -38,7 +38,6 @@ export default function AddContentType() {
             <Button
                 variant='outlined'
                 color='neutral'
-                startIcon={<Add/>}
                 onClick={() => setOpen(true)}>
                 Yeni İçerik Tipi
             </Button>
