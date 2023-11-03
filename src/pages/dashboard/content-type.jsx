@@ -6,7 +6,7 @@ import {contentTypeList} from "@/redux/types/content-type/content-type.list";
 import AddContentType from "../../../components/content-type/AddContentType";
 
 export default function ContentSingle() {
-    const columns = ['id', 'type', 'name'];
+    const columns = ['id', 'type', 'description'];
     const dispatch = useDispatch();
     const {contentTypes} = useSelector((state) => state.contentType);
 

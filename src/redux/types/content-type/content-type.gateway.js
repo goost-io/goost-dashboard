@@ -5,7 +5,7 @@ export const getAll = async () => {
     return await axiosInstance.get(
         process.env.REACT_APP_BASE_BACKEND +
         routesV1.version +
-        routesV1.type.content.list
+        routesV1.type.content
     );
 };
 
@@ -13,7 +13,7 @@ export const create = async (data) => {
     return await axiosInstance.post(
         process.env.REACT_APP_BASE_BACKEND +
         routesV1.version +
-        routesV1.type.content.create,
+        routesV1.type.content,
         data
     );
 };
