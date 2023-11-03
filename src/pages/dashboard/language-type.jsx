@@ -6,12 +6,13 @@ import AddLanguageModal from "../../../components/language/AddLangBtnModal";
 import {languageList} from "@/redux/types/language/language.list";
 
 export default function ContentSingle() {
-    const columns = ['id', 'type', 'name'];
+    const columns = ['id', 'code', 'name'];
     const dispatch = useDispatch();
     const {languages} = useSelector((state) => state.language);
 
     React.useEffect(() => {
         dispatch(languageList());
+        console.log(languages);
     }, [languages.length < 0]);
 
     const containerStyle = {

@@ -4,8 +4,9 @@ import Edit from "@mui/icons-material/Edit";
 import Delete from "@mui/icons-material/Delete";
 import Button from "@mui/joy/Button";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditContentSingle from "./content-single/EditContentSingleModal";
-import ShowContentSingleModal from "./content-single/ShowContentSingleModal";
+import EditDataModal from "./EditDataModal";
+import ShowContentSingleModal from "./ShowDataModal";
+import ShowDataModal from "./ShowDataModal";
 
 export default function TableComponent({ columns, data }) {
   const [selectedItemId, setSelectedItemId] = React.useState(null);
@@ -69,17 +70,22 @@ export default function TableComponent({ columns, data }) {
         ))}
       </tbody>
       {openEditModal && selectedItemId !== null && (
-        <EditContentSingle
-          open={openEditModal}
-          setOpen={setOpenEditModal}
-          dataId={selectedItemId}
-        />
+          <EditDataModal
+              open={openEditModal}
+              setOpen={setOpenEditModal}
+              dataId={selectedItemId}
+              fields={columns} // Define the fields you want to edit
+              data={data} // The data containing the values for the fields
+          />
+
       )}
       {openShowModal && selectedItemId !== null && (
-        <ShowContentSingleModal
+        <ShowDataModal
           open={openShowModal}
           setOpen={setOpenShowModal}
           dataId={selectedItemId}
+          fields={columns} // Define the fields you want to edit
+          data={data}
         />
       )}
     </Table>

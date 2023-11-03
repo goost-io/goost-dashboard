@@ -14,7 +14,7 @@ export const contentTypeSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(contentTypeList.fulfilled, (state, action) => {
-            state.contentTypes = action.payload;
+            state.contentTypes = action.payload.data;
             state.loading = false;
         });
         builder.addCase(contentTypeList.pending, (state, action) => {

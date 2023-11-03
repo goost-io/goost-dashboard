@@ -14,7 +14,7 @@ export const languageSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(languageList.fulfilled, (state, action) => {
-            state.languages = action.payload;
+            state.languages = action.payload.data;
             state.loading = false;
         });
         builder.addCase(languageList.pending, (state, action) => {
