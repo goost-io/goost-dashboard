@@ -21,7 +21,7 @@ export default function AddLanguageModal() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(languageCreate({ language, code }))
+    dispatch(languageCreate({name: language, code: code }))
       .unwrap()
       .then(() => {
         setOpen(false);
