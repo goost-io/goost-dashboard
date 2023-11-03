@@ -8,7 +8,7 @@ import EditDataModal from "./EditDataModal";
 import ShowContentSingleModal from "./ShowDataModal";
 import ShowDataModal from "./ShowDataModal";
 
-export default function TableComponent({ columns, data }) {
+export default function TableComponent({ listColumns, showColumns, data }) {
   const [selectedItemId, setSelectedItemId] = React.useState(null);
   const [openEditModal, setOpenEditModal] = React.useState(false);
   const [openShowModal, setOpenShowModal] = React.useState(false);
@@ -31,7 +31,7 @@ export default function TableComponent({ columns, data }) {
     <Table sx={{ "& thead th:nth-child(1)": { width: "10%" } }}>
       <thead>
         <tr>
-          {columns.map((column) => (
+          {listColumns.map((column) => (
             <th key={column}>{column}</th>
           ))}
           <th>actions</th>
@@ -40,7 +40,7 @@ export default function TableComponent({ columns, data }) {
       <tbody>
         {data.map((row, index) => (
           <tr key={index}>
-            {columns.map((column) => (
+            {listColumns.map((column) => (
               <td key={column}>{row[column]}</td>
             ))}
             <td>
@@ -74,7 +74,7 @@ export default function TableComponent({ columns, data }) {
               open={openEditModal}
               setOpen={setOpenEditModal}
               dataId={selectedItemId}
-              fields={columns} // Define the fields you want to edit
+              fields={showColumns} // Define the fields you want to edit
               data={data} // The data containing the values for the fields
           />
 
@@ -84,7 +84,7 @@ export default function TableComponent({ columns, data }) {
           open={openShowModal}
           setOpen={setOpenShowModal}
           dataId={selectedItemId}
-          fields={columns} // Define the fields you want to edit
+          fields={showColumns} // Define the fields you want to edit
           data={data}
         />
       )}

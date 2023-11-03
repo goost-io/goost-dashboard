@@ -6,7 +6,8 @@ import {singleContentList} from "../../redux/single-content/content.list";
 import TableComponent from "../../../components/TableComponent";
 
 export default function ContentSingle() {
-    const columns = ['id', 'title', 'language'];
+    const listColumns= ['id', 'title', 'language'];
+    const showColumns = ['id', 'title', 'language', 'content', 'type'];
     const dispatch = useDispatch();
     const {contents} = useSelector((state) => state.singleContent);
 
@@ -32,7 +33,7 @@ export default function ContentSingle() {
                 <Sheet
                     variant='outlined'
                     sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
-                    <TableComponent columns={columns} data={contents}/>
+                    <TableComponent listColumns={listColumns} showColumns={showColumns} data={contents}/>
                 </Sheet>
             )}
             </div>

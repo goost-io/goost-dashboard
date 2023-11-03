@@ -5,12 +5,14 @@ import TableComponent from "../../../components/TableComponent";
 import {offerRequestList} from "@/redux/offer-request/offer-request.list";
 
 export default function ContentSingle() {
-    const columns = ['id', 'name', 'email', 'phone', 'message', 'type', 'createdAt', 'updatedAt'];
+    const listColumns = ['id', 'name', 'email'];
+    const showColumns = ['id', 'name', 'email', 'phoneNumber', 'message', 'businessName', 'businessScale', 'website', 'type', 'price', 'accept-terms', 'createdAt', 'updatedAt'];
     const dispatch = useDispatch();
     const {offerRequests} = useSelector((state) => state.offerRequest);
 
 
     React.useEffect(() => {
+        console.log(offerRequests)
         dispatch(offerRequestList());
     }, [offerRequests.length < 0]);
 
@@ -25,7 +27,7 @@ export default function ContentSingle() {
         <Sheet
             variant='outlined'
             sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
-            <TableComponent columns={columns} data={offerRequests}/>
+            <TableComponent listColumns={listColumns} showColumns={showColumns} data={offerRequests}/>
         </Sheet>
     </>);
 }

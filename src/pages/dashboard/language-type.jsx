@@ -6,7 +6,8 @@ import AddLanguageModal from "../../../components/language/AddLangBtnModal";
 import {languageList} from "@/redux/types/language/language.list";
 
 export default function ContentSingle() {
-    const columns = ['id', 'code', 'name'];
+    const listColumns = ['id', 'code', 'name'];
+    const showColumns = ['id', 'code', 'name'];
     const dispatch = useDispatch();
     const {languages} = useSelector((state) => state.language);
 
@@ -30,7 +31,7 @@ export default function ContentSingle() {
             <Sheet
                 variant='outlined'
                 sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
-                <TableComponent columns={columns} data={languages}/>
+                <TableComponent listColumns={listColumns} showColumns={showColumns} data={languages}/>
             </Sheet>
         </>
     );

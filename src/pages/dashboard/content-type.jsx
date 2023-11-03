@@ -6,7 +6,8 @@ import {contentTypeList} from "@/redux/types/content-type/content-type.list";
 import AddContentType from "../../../components/content-type/AddContentType";
 
 export default function ContentSingle() {
-    const columns = ['id', 'type', 'description'];
+    const listColumns = ['id', 'type', 'description'];
+    const showColumns = ['id', 'type', 'description'];
     const dispatch = useDispatch();
     const {contentTypes} = useSelector((state) => state.contentType);
 
@@ -31,9 +32,9 @@ export default function ContentSingle() {
                 sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
                 {contentTypes.length === undefined ?
                     <p>Yükleniyor...</p>
-                :
-                <TableComponent columns={columns} data={contentTypes}/>
-            }
+                    :
+                    <TableComponent listColumns={listColumns} showColumns={showColumns} data={contentTypes}/>
+                }
             </Sheet>
         </>
     );
