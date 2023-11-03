@@ -78,6 +78,7 @@ export default function AddContentSingleModal() {
                   <Textarea
                     placeholder='Type in here…'
                     minRows={2}
+                    onChange={e => setContent(e.target.value)}
                     sx={{
                       "&::before": {
                         display: "none",

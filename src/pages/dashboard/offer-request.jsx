@@ -6,7 +6,7 @@ import {offerRequestList} from "@/redux/offer-request/offer-request.list";
 
 export default function ContentSingle() {
     const listColumns = ['id', 'name', 'email'];
-    const showColumns = ['id', 'name', 'email', 'phoneNumber', 'message', 'businessName', 'businessScale', 'website', 'type', 'price', 'accept-terms', 'createdAt', 'updatedAt'];
+    const showColumns = ['id', 'name', 'email', 'phoneNumber', 'businessName', 'businessScale', 'website', 'type', 'price', 'accept-terms', 'createdAt', 'updatedAt'];
     const dispatch = useDispatch();
     const {offerRequests} = useSelector((state) => state.offerRequest);
 
