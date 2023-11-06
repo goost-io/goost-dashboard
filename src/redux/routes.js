@@ -26,6 +26,8 @@ export const routesV1 = {
         createTitle1: `/${contentManagementRoot}/create-title-1`,
         createTitle2: `/${contentManagementRoot}/create-title-2`,
         listTitle2: `/${contentManagementRoot}/list-title-2`,
+        updateTitle2: `/${contentManagementRoot}/update-title-2`,
+        deleteTitle2: `/${contentManagementRoot}/delete-title-2`,
     },
     type: {
         root: typeRoot,

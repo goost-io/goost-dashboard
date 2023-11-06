@@ -4,9 +4,11 @@ import AddContentSingleModal from "../../../components/content-single/AddContent
 import {useDispatch, useSelector} from "react-redux";
 import {singleContentList} from "../../redux/single-content/content.list";
 import TableComponent from "../../../components/TableComponent";
+import {singleContentUpdate} from "@/redux/single-content/content.update";
+import {singleContentDelete} from "@/redux/single-content/content.delete";
 
 export default function ContentSingle() {
-    const listColumns= ['id', 'title', 'language'];
+    const listColumns= ['id', 'type', 'language'];
     const showColumns = ['id', 'title', 'language', 'content', 'type'];
     const dispatch = useDispatch();
     const {contents} = useSelector((state) => state.singleContent);
@@ -22,6 +24,14 @@ export default function ContentSingle() {
         alignItems: "center",
     };
 
+    const handleEdit = (editedData) => {
+        dispatch(singleContentUpdate(editedData));
+    }
+
+    const handleDelete = (id) => {
+        dispatch(singleContentDelete(id))
+    }
+
     return (
         <>
             <div style={containerStyle}>
@@ -33,7 +43,7 @@ export default function ContentSingle() {
                 <Sheet
                     variant='outlined'
                     sx={{width: "100%", boxShadow: "sm", borderRadius: "sm"}}>
-                    <TableComponent listColumns={listColumns} showColumns={showColumns} data={contents}/>
+                    <TableComponent listColumns={listColumns} showColumns={showColumns} data={contents} handleEdit={handleEdit} handleDelete={handleDelete}/>
                 </Sheet>
             )}
             </div>

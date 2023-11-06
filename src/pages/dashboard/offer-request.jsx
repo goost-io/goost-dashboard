@@ -12,7 +12,6 @@ export default function ContentSingle() {
 
 
     React.useEffect(() => {
-        console.log(offerRequests)
         dispatch(offerRequestList());
     }, [offerRequests.length < 0]);
 
