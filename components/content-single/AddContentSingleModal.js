@@ -8,11 +8,11 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import DialogTitle from "@mui/joy/DialogTitle";
 import DialogContent from "@mui/joy/DialogContent";
 import Stack from "@mui/joy/Stack";
-import Add from "@mui/icons-material/Add";
 import { useDispatch } from "react-redux";
 import { singleContentCreate } from "@/redux/single-content/content.create";
 import { toast } from "react-toastify";
 import { Textarea } from "@mui/joy";
+import { singleContentList } from "../../src/redux/single-content/content.list";
 
 export default function AddContentSingleModal() {
   const [open, setOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function AddContentSingleModal() {
       .then(() => {
         toast.success("İçerik Tipi Eklendi");
         setOpen(false);
-        window.location.reload();
+        dispatch(singleContentList());
       })
       .catch((err) => {
         toast.error("Bir Hata Oluştu");
@@ -78,7 +78,7 @@ export default function AddContentSingleModal() {
                   <Textarea
                     placeholder='Type in here…'
                     minRows={2}
-                    onChange={e => setContent(e.target.value)}
+                    onChange={(e) => setContent(e.target.value)}
                     sx={{
                       "&::before": {
                         display: "none",
