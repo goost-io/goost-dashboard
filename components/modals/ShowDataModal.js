@@ -21,21 +21,29 @@ export default function ShowDataModal({
     }
   }, [data, dataId]);
 
-  const handleEdit = () => {
-    // Call the onSave callback to save changes
-    onSave(showData);
-    setOpen(false);
+  const modalContentStyle = {
+    maxWidth: "600px",
+    width: "90%",
+    margin: "0 auto",
+  };
+
+  const textareaStyle = {
+    width: "100%",
+    minHeight: "50px",
+    fontSize: "16px",
+    padding: "8px",
+    boxSizing: "border-box",
   };
 
   if (!showData) {
-    return null; // If there's no data to edit, don't display the modal
+    return null; // If there's no data to show, don't display the modal
   }
 
   return (
     <React.Fragment>
       <Modal keepMounted open={open} onClose={() => setOpen(false)}>
-        <ModalDialog>
-          <DialogTitle>Edit Content</DialogTitle>
+        <ModalDialog style={modalContentStyle}>
+          <DialogTitle>Show Content</DialogTitle>
           <DialogContent>
             {fields.map((field) => (
               <div key={field}>
@@ -46,7 +54,7 @@ export default function ShowDataModal({
                 <TextareaAutosize
                   value={showData[field]}
                   placeholder={field}
-                  margin='normal'
+                  style={textareaStyle}
                   disabled
                 />
               </div>

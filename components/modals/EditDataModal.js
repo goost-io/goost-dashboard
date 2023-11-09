@@ -5,14 +5,12 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import DialogTitle from "@mui/joy/DialogTitle";
 import DialogContent from "@mui/joy/DialogContent";
 import { TextareaAutosize } from "@mui/base";
-import { toast, ToastContainer } from "react-toastify";
 
 export default function EditDataModal({
   open,
   setOpen,
   dataId,
-  fields, // An array of field names to edit
-  data, // The data object containing the values for the fields
+  data, // Veritabanından gelen veri nesnesi
   handleEdit,
 }) {
   const [editedData, setEditedData] = useState({});
@@ -36,32 +34,54 @@ export default function EditDataModal({
     return null; // If there's no data to edit, don't display the modal
   }
 
+  const modalContentStyle = {
+    maxWidth: "600px",
+    width: "90%",
+    margin: "0 auto",
+  };
+
+  const textareaStyle = {
+    width: "100%",
+    minHeight: "50px",
+  };
+
+  const editButtonStyle = {
+    marginTop: "20px",
+    backgroundColor: "green",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "darkgreen",
+    },
+  };
+
   return (
     <React.Fragment>
       <Modal keepMounted open={open} onClose={() => setOpen(false)}>
-        <ModalDialog>
+        <ModalDialog style={modalContentStyle}>
           <DialogTitle>Edit Content</DialogTitle>
           <DialogContent>
-            {fields.map((field) => (
-              <div key={field}>
-                <div>
-                  <label>{field}</label>
-                </div>
+            {Object.keys(editedData)
+              .filter((field) => field !== "id") // id alanını filtrele
+              .map((field) => (
+                <div key={field}>
+                  <div>
+                    <label>{field}</label>
+                  </div>
 
-                <TextareaAutosize
-                  onChange={(e) =>
-                    setEditedData({ ...editedData, [field]: e.target.value })
-                  }
-                  value={editedData[field]}
-                  placeholder={field}
-                  margin='normal'
-                />
-              </div>
-            ))}
+                  <TextareaAutosize
+                    onChange={(e) =>
+                      setEditedData({ ...editedData, [field]: e.target.value })
+                    }
+                    value={editedData[field]}
+                    placeholder={field}
+                    style={textareaStyle}
+                  />
+                </div>
+              ))}
             <div style={{ marginTop: 20 }}>
               <Button
                 variant='contained'
-                color='primary'
+                style={editButtonStyle}
                 onClick={handleEditLocal}>
                 Edit
               </Button>
