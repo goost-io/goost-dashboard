@@ -24,7 +24,6 @@ export default function EditDataModal({
   }, [data, dataId]);
 
   const handleEditLocal = () => {
-    // Call the onSave callback to save changes
     handleEdit(editedData);
     setSnackbarOpen(true);
     setOpen(false);
@@ -42,26 +41,50 @@ export default function EditDataModal({
 
   const textareaStyle = {
     width: "100%",
-    minHeight: "50px",
+    minHeight: "50px", // Yüksekliği artırabilirsiniz
   };
 
-  const editButtonStyle = {
-    marginTop: "20px",
-    backgroundColor: "green",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "darkgreen",
-    },
+  const formattedUpdatedAt = editedData.updatedAt
+    ? new Date(editedData.updatedAt).toLocaleString("tr-TR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+      })
+    : "";
+
+  const formattedCreatedAt = editedData.createdAt
+    ? new Date(editedData.createdAt).toLocaleString("tr-TR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+      })
+    : "";
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
     <React.Fragment>
-      <Modal keepMounted open={open} onClose={() => setOpen(false)}>
+      <Modal keepMounted open={open} onClose={handleClose}>
         <ModalDialog style={modalContentStyle}>
           <DialogTitle>Edit Content</DialogTitle>
           <DialogContent>
             {Object.keys(editedData)
-              .filter((field) => field !== "id") // id alanını filtrele
+              .filter(
+                (field) =>
+                  field !== "id" &&
+                  field !== "updatedAt" &&
+                  field !== "createdAt"
+              ) // id, updatedAt ve createdAt alanlarını filtreledim okunur bir şekilde yazalım diye
               .map((field) => (
                 <div key={field}>
                   <div>
@@ -78,14 +101,42 @@ export default function EditDataModal({
                   />
                 </div>
               ))}
+            {formattedUpdatedAt && (
+              <div>
+                <div>
+                  <label>Updated At</label>
+                </div>
+                <TextareaAutosize
+                  value={formattedUpdatedAt}
+                  readOnly
+                  style={textareaStyle}
+                />
+              </div>
+            )}
+            {formattedCreatedAt && (
+              <div>
+                <div>
+                  <label>Created At</label>
+                </div>
+                <TextareaAutosize
+                  value={formattedCreatedAt}
+                  readOnly
+                  style={textareaStyle}
+                />
+              </div>
+            )}
             <div style={{ marginTop: 20 }}>
-              <Button
-                variant='contained'
-                style={editButtonStyle}
-                onClick={handleEditLocal}>
+              <Button variant='contained' onClick={handleEditLocal}>
                 Edit
               </Button>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={handleClose}>
+                Close
+              </Button>
             </div>
+            <div style={{ marginTop: 10 }}></div>
           </DialogContent>
         </ModalDialog>
       </Modal>

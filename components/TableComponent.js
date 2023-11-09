@@ -111,7 +111,6 @@ export default function TableComponent({
           dataId={selectedItemId}
           fields={showColumns} // Define the fields you want to edit
           data={data}
-          handleDeleteModal={handleDeleteModal}
           handleDelete={handleDelete}
         />
       )}
